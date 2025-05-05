@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Votre Application - Coffre Numérique pour Entreprises</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; padding: 0;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        nav {
+            background-color: #0066cc;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background-color: white;
+        }
+        .hero-text {
+            flex: 1 1 400px;
+            max-width: 600px;
+            padding: 20px;
+        }
+        .hero-text h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #004080;
+        }
+        .hero-text p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .hero-video {
+            flex: 1 1 400px;
+            max-width: 600px;
+            padding: 20px;
+        }
+        video {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        section.features {
+            background-color: #e8f0fe;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        section.features h3 {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #004080;
+        }
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .feature-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 280px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .feature-item h4 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+        footer {
+            background-color: #004080;
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            margin-top: 40px;
+        }
+        @media(max-width: 768px) {
+            .hero {
+                flex-direction: column;
+            }
+            nav {
+                flex-direction: column;
+            }
+            nav a {
+                margin: 10px 0;
+            }
+            .feature-list {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MESDOCS - Coffre Numérique Sécurisé</h1>
+    </header>
+    <nav>
+        <a href="#features">Fonctionnalités</a>
+        <a href="#advantages">Avantages</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <section class="hero">
+        <div class="hero-text">
+            <h2>Gérez et consultez vos dossiers en ligne en toute simplicité</h2>
+            <p>Notre application mobile sécurisée permet aux entreprises et cabinets de stocker, manipuler et accéder facilement à leurs fichiers et dossiers numériques. L'administration via un back office intuitif garantit une gestion efficace et centralisée.</p>
+            <p>Découvrez comment notre solution peut transformer votre gestion documentaire.</p>
+        </div>
+        <div class="hero-video">
+            <video controls>
+                <source src="votre-video-presentation.mp4" type="video/mp4" />
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+        </div>
+    </section>
+    <section id="features" class="features">
+        <h3>Fonctionnalités principales</h3>
+        <div class="feature-list">
+            <div class="feature-item">
+                <h4>Stockage sécurisé</h4>
+                <p>Vos données sont protégées grâce à un chiffrement avancé et un accès contrôlé.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Consultation facile</h4>
+                <p>Accédez à vos dossiers depuis n'importe où, à tout moment via l'application mobile.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Gestion back office</h4>
+                <p>Les administrateurs peuvent gérer les utilisateurs et les contenus facilement via un tableau de bord dédié.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Interface intuitive</h4>
+                <p>Une expérience utilisateur fluide pour tous les profils, sans formation complexe.</p>
+            </div>
+        </div>
+    </section>
+    <section id="advantages" class="features">
+        <h3>Pourquoi choisir notre solution ?</h3>
+        <div class="feature-list">
+            <div class="feature-item">
+                <h4>Sécurité renforcée</h4>
+                <p>Normes élevées pour garantir la confidentialité de vos données.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Gain de temps</h4>
+                <p>Accès rapide et gestion simplifiée pour améliorer votre productivité.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Support dédié</h4>
+                <p>Une équipe à votre écoute pour vous accompagner à chaque étape.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Mise à jour continue</h4>
+                <p>Des évolutions régulières pour répondre à vos besoins.</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact" style="padding: 40px 20px; background: white; text-align: center;">
+        <h3>Contactez-nous</h3>
+        <p>Pour plus d'informations ou une démo personnalisée, n'hésitez pas à nous contacter.</p>
+        <form style="max-width: 400px; margin: auto; text-align: left;">
+            <label for="name">Nom :</label><br />
+            <input type="text" id="name" name="name" required style="width: 100%; padding: 8px; margin-bottom: 15px;" /><br />
+            <label for="email">Email :</label><br />
+            <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-bottom: 15px;" /><br />
+            <label for="message">Message :</label><br />
+            <textarea id="message" name="message" rows="4" required style="width: 100%; padding: 8px; margin-bottom: 15px;"></textarea><br />
+            <button type="submit" style="background-color: #004080; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Envoyer</button>
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2024 Votre Société. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
