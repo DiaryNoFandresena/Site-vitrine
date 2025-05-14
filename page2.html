@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MesDocs - Coffre Numérique Sécurisé</title>
+
+    <!-- Google Fonts: Inter pour une typographie moderne et professionnelle -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+        rel="stylesheet"
+    />
+    <!-- Animate.css -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        rel="stylesheet"
+    />
+    <!-- Swiper CSS -->
+    <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <style>
+        /* Utilisation de la police Inter */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Menu fixe avec fond semi-transparent et effet blur */
+        nav {
+            background-color: rgba(255 255 255 / 0.9);
+            backdrop-filter: saturate(180%) blur(10px);
+        }
+
+        /* Transitions fluides sur swiper-slide */
+        .swiper-slide {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .swiper-slide:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .swiper-slide:active {
+            transform: scale(0.98);
+        }
+
+        /* Boutons navigation Swiper améliorés */
+        .swiper-button-next,
+        .swiper-button-prev,
+        .swiper-button-next-advantages,
+        .swiper-button-prev-advantages {
+            color: #fff;
+            background-color: #00aeef;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 174, 239, 0.5);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover,
+        .swiper-button-next-advantages:hover,
+        .swiper-button-prev-advantages:hover {
+            background-color: #0078b5;
+            box-shadow: 0 6px 15px rgba(0, 120, 181, 0.7);
+        }
+        .swiper-button-next::after,
+        .swiper-button-prev::after,
+        .swiper-button-next-advantages::after,
+        .swiper-button-prev-advantages::after {
+            font-size: 20px;
+        }
+
+        /* Cards avec ombre animée et légère élévation persistante */
+        .advantage-card,
+        .swiper-slide > div.bg-white {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition:
+                box-shadow 0.5s ease,
+                transform 0.3s ease,
+                background-color 0.3s ease;
+            will-change: transform, box-shadow;
+        }
+        .advantage-card:hover,
+        .swiper-slide > div.bg-white:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            background-color: #e0f2fe;
+        }
+
+        /* Animation pulse sur logo */
+        .logo-animated {
+            animation: pulse 2s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Animation pour liens actifs */
+        .nav-link.active {
+            border-bottom: 2px solid #00aeef;
+            color: #00aeef;
+            animation: slideIn 0.3s ease-in-out;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(-10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Fond vivant */
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e0f2fe 100%);
+        }
+
+        /* Icônes contact avec effet hover amélioré */
+        .contact-icon {
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out,
+                opacity 0.4s ease-in-out;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #0077b5;
+            cursor: pointer;
+            outline-offset: 4px;
+        }
+        .contact-icon:hover,
+        .contact-icon:focus {
+            transform: scale(1.3) rotate(8deg);
+            box-shadow: 0 8px 20px rgba(0, 174, 239, 0.5);
+            opacity: 0.9;
+            color: #0077b5;
+        }
+        .contact-icon::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(
+                circle,
+                rgba(0, 174, 239, 0.3) 0%,
+                transparent 70%
+            );
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+            z-index: -1;
+            color: #0077b5;
+        }
+        .contact-icon:hover::after,
+        .contact-icon:focus::after {
+            opacity: 1;
+            transform: scale(1.5);
+            color: #0077b5;
+        }
+
+        /* Focus visible pour accessibilité */
+        a:focus,
+        button:focus {
+            outline: 3px solid #00aeef;
+            outline-offset: 2px;
+        }
+
+        /* Pagination Swiper personnalisée */
+        .swiper-pagination-bullet {
+            background: #00aeef;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+        }
+
+        /* Accordéon FAQ */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 500px; /* assez grand pour le contenu */
+        }
+        .faq-question {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-item.open .faq-toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Bouton retour en haut */
+        #back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background-color: #00aeef;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0, 174, 239, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
+        }
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+
+    <!-- Menu Hamburger -->
+    <nav
+        class="fixed w-full top-0 z-50 shadow-lg"
+        aria-label="Menu principal"
+    >
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <div class="text-2xl font-bold logo-animated text-[#00AEEF]">
+                MesDocs
+            </div>
+            <div class="md:hidden">
+                <button
+                    id="hamburger-btn"
+                    class="focus:outline-none"
+                    aria-controls="mobile-menu"
+                    aria-expanded="false"
+                    aria-label="Ouvrir le menu"
+                >
+                    <svg
+                        class="w-6 h-6 text-[#00AEEF]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+            <ul
+                id="nav-menu"
+                class="hidden md:flex space-x-6"
+                role="menubar"
+            >
+                <li role="none">
+                    <a
+                        href="#hero"
+                        class="nav-link hover:text-[#00AEEF] transition duration-300"
+                        role="menuitem"
+                        tabindex="0"
+                        >Accueil</a
+                    >
+                </li>
+                <li role="none">
+                    <a
+                        href="#video"
+                        class="nav-link hover:text-[#00AEEF] transition duration-300"
+                        role="menuitem"
+                        tabindex="0"
+                        >Vidéo Présentation</a
+                    >
+                </li>
+                <li role="none">
+                    <a
+                        href="#features"
+                        class="nav-link hover:text-[#00AEEF] transition duration-300"
+                        role="menuitem"
+                        tabindex="0"
+                        >Nos Fonctionnalités</a
+                    >
+                </li>
+                <li role="none">
+                    <a
+                        href="#advantages"
+                        class="nav-link hover:text-[#00AEEF] transition duration-300"
+                        role="menuitem"
+                        tabindex="0"
+                        >Nos Avantages</a
+                    >
+                </li>
+                <li role="none">
+                    <a
+                        href="#faq"
+                        class="nav-link hover:text-[#00AEEF] transition duration-300"
+                        role="menuitem"
+                        tabindex="0"
+                        >FAQ</a
+                    >
+                </li>
+                <li role="none">
+                    <a
+                        href="#contact"
+                        class="nav-link hover:text-[#00AEEF] transition duration-300"
+                        role="menuitem"
+                        tabindex="0"
+                        >Contact</a
+                    >
+                </li>
+            </ul>
+        </div>
+
+        <!-- Menu déroulant pour mobile -->
+        <div
+            id="mobile-menu"
+            class="hidden md:hidden bg-white shadow-md transition-max-height duration-500 ease-in-out overflow-hidden"
+        >
+            <ul class="space-y-4 p-4" role="menu" aria-label="Menu mobile">
+                <li>
+                    <a
+                        href="#hero"
+                        class="nav-link block hover:text-[#00AEEF] transition duration-300"
+                        role="menuitem"
+                        tabindex="-1"
+                        >Accueil</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#video"
+                        class="nav-link block hover:text-[#00AEEF] transition duration-300"
+                        role="menuitem"
+                        tabindex="-1"
+                        >Vidéo Présentation</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#features"
+                        class="nav-link block hover:text-[#00AEEF] transition duration-300"
+                        role="menuitem"
+                        tabindex="-1"
+                        >Nos Fonctionnalités</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#advantages"
+                        class="nav-link block hover:text-[#00AEEF] transition duration-300"
+                        role="menuitem"
+                        tabindex="-1"
+                        >Nos Avantages</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#faq"
+                        class="nav-link block hover:text-[#00AEEF] transition duration-300"
+                        role="menuitem"
+                        tabindex="-1"
+                        >FAQ</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#contact"
+                        class="nav-link block hover:text-[#00AEEF] transition duration-300"
+                        role="menuitem"
+                        tabindex="-1"
+                        >Contact</a
+                    >
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Section Héros avec Image -->
+    <section id="hero" class="pt-20 pb-12 relative">
+        <div class="container mx-auto text-center px-4">
+            <h1
+                class="text-4xl md:text-5xl font-bold mb-4 animate__animated animate__fadeIn"
+            >
+                Bienvenue sur MesDocs
+            </h1>
+            <p
+                class="text-base md:text-lg text-gray-700 mb-6 animate__animated animate__fadeIn animate__delay-1s max-w-3xl mx-auto"
+            >
+                Votre coffre numérique sécurisé pour une gestion simple et efficace.
+            </p>
+            <img
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+                alt="Bureau moderne"
+                class="mx-auto w-full max-w-3xl rounded-lg shadow-lg animate__animated animate__zoomIn animate__delay-0.5s"
+                loading="lazy"
+            />
+        </div>
+    </section>
+
+    <!-- Section Vidéo de Présentation -->
+    <section id="video" class="py-12 bg-white">
+        <div class="container mx-auto text-center px-4">
+            <h2
+                class="text-3xl font-bold mb-6 animate__animated animate__fadeInUp"
+            >
+                Découvrez Notre Vidéo
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <video
+                    controls
+                    class="w-full rounded-lg shadow-lg animate__animated animate__fadeIn animate__delay-1s"
+                    preload="metadata"
+                    loading="lazy"
+                >
+                    <source
+                        src="https://www.w3schools.com/html/mov_bbb.mp4"
+                        type="video/mp4"
+                    />
+                    Votre navigateur ne supporte pas la balise vidéo.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Carrousel de Fonctionnalités -->
+    <section id="features" class="py-12">
+        <div class="container mx-auto px-4">
+            <h2
+                class="text-3xl font-bold text-center mb-8 animate__animated animate__fadeInUp"
+            >
+                Nos Fonctionnalités
+            </h2>
+            <div class="swiper-container relative">
+                <div class="swiper-wrapper">
+                    <!-- Exemple de card avec ombre persistante et animation -->
+                    <div class="swiper-slide p-4">
+                        <div
+                            class="bg-white rounded-xl shadow-md hover:shadow-2xl transition-shadow duration-500 transform hover:-translate-y-2 hover:scale-105"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1516321310768-8e7a0e5d4e26?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                                alt="Travail d'équipe"
+                                class="w-full h-48 object-cover rounded-t-xl"
+                                loading="lazy"
+                            />
+                            <div class="p-4">
+                                <h3 class="text-xl font-semibold mb-2 text-[#007ebf]">
+                                    Stockage sécurisé
+                                </h3>
+                                <p class="text-gray-700">
+                                    Vos données sont protégées avec un chiffrement avancé.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide p-4">
+                        <div
+                            class="bg-white rounded-xl shadow-md hover:shadow-2xl transition-shadow duration-500 transform hover:-translate-y-2 hover:scale-105"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                                alt="Réunion"
+                                class="w-full h-48 object-cover rounded-t-xl"
+                                loading="lazy"
+                            />
+                            <div class="p-4">
+                                <h3 class="text-xl font-semibold mb-2 text-[#007ebf]">
+                                    Accès 24/7
+                                </h3>
+                                <p class="text-gray-700">
+                                    Consultez vos documents à tout moment, où que vous soyez.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Ajoutez les autres slides de la même manière -->
+                    <!-- ... -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- Boutons de navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Advantages avec Carrousel -->
+    <section
+        id="advantages"
+        class="py-16 bg-gradient-to-r from-blue-50 to-blue-100"
+    >
+        <div class="container mx-auto text-center px-4">
+            <h3
+                class="text-3xl font-bold text-blue-900 mb-10 animate__animated animate__fadeInUp"
+            >
+                Pourquoi choisir Mesdocs ?
+            </h3>
+            <div class="swiper-container-advantages relative">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide p-4">
+                        <div
+                            class="advantage-card bg-white p-6 rounded-xl shadow-md hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 hover:scale-105"
+                        >
+                            <div class="flex justify-center mb-4">
+                                <svg
+                                    class="w-12 h-12 text-[#00AEEF]"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 11c0-2.76-2.24-5-5-5S2 8.24 2 11c0 2.76 2.24 5 5 5s5-2.24 5-5zM22 11c0-2.76-2.24-5-5-5s-5 2.24-5 5 2.24 5 5 5 5-2.24 5-5z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-semibold text-[#00AEEF] mb-4">
+                                Sécurité renforcée
+                            </h4>
+                            <p class="text-gray-600">
+                                Normes élevées pour garantir la confidentialité de vos
+                                données.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Ajoutez les autres slides de la même manière -->
+                    <!-- ... -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="swiper-pagination-advantages"></div>
+
+                <!-- Boutons de navigation pour Advantages -->
+                <div class="swiper-button-next-advantages"></div>
+                <div class="swiper-button-prev-advantages"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section FAQ avec accordéon -->
+    <section id="faq" class="py-12 bg-white">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2
+                class="text-3xl font-bold text-center mb-8 animate__animated animate__fadeInUp"
+            >
+                FAQ
+            </h2>
+            <div class="space-y-6">
+                <!-- FAQ Item -->
+                <div class="faq-item bg-white p-6 rounded-xl shadow-md animate__animated animate__fadeInUp">
+                    <div class="faq-question flex justify-between items-center" tabindex="0" role="button" aria-expanded="false">
+                        <h3 class="text-xl font-semibold text-[#00AEEF]">
+                            Qu'est-ce que MesDocs ?
+                        </h3>
+                        <span class="faq-toggle-icon text-3xl font-bold select-none">+</span>
+                    </div>
+                    <div class="faq-answer text-gray-700 mt-2">
+                        MesDocs est une application innovante conçue pour simplifier la gestion de vos documents avec des fonctionnalités modernes et intuitives.
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white p-6 rounded-xl shadow-md animate__animated animate__fadeInUp">
+                    <div class="faq-question flex justify-between items-center" tabindex="0" role="button" aria-expanded="false">
+                        <h3 class="text-xl font-semibold text-[#00AEEF]">
+                            Comment puis-je télécharger l'application ?
+                        </h3>
+                        <span class="faq-toggle-icon text-3xl font-bold select-none">+</span>
+                    </div>
+                    <div class="faq-answer text-gray-700 mt-2">
+                        Vous pouvez télécharger MesDocs depuis notre site web ou via les stores d'applications mobiles.
+                    </div>
+                </div>
+
+                <!-- Ajoutez d'autres FAQ de la même manière -->
+                <!-- ... -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="py-12 bg-gray-100">
+        <div class="container mx-auto text-center px-4">
+            <h2 class="text-3xl font-bold mb-8 animate__animated animate__fadeInUp">
+                Contactez-nous
+            </h2>
+            <div
+                class="flex justify-center space-x-8 animate__animated animate__fadeInUp animate__delay-1s"
+            >
+                <a
+                    href="mailto:support@mesdocs.com"
+                    class="contact-icon"
+                    title="Envoyer un email"
+                    tabindex="0"
+                >
+                    <svg
+                        class="w-12 h-12 text-[#00AEEF]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        ></path>
+                    </svg>
+                    <span class="sr-only">Envoyer un email</span>
+                </a>
+                <a
+                    href="https://www.linkedin.com/company/mesdocs"
+                    target="_blank"
+                    class="contact-icon"
+                    title="Suivez-nous sur LinkedIn"
+                    tabindex="0"
+                >
+                    <svg
+                        class="w-12 h-12 text-[#0077B5]"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-1.337-.02-3.06-1.867-3.06-1.867 0-2.153 1.459-2.153 2.966v5.698h-3v-11h2.879v1.511h.041c.401-.757 1.379-1.557 2.837-1.557 3.037 0 3.603 2 3.603 4.604v6.442z"
+                        />
+                    </svg>
+                    <span class="sr-only">Suivez-nous sur LinkedIn</span>
+                </a>
+                <a
+                    href="https://www.facebook.com/mesdocs"
+                    target="_blank"
+                    class="contact-icon"
+                    title="Suivez-nous sur Facebook"
+                    tabindex="0"
+                >
+                    <svg
+                        class="w-12 h-12 text-[#1877F2]"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385h-3.047v-3.469h3.047v-2.642c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.488 0-1.951.932-1.951 1.888v2.235h3.328l-.532 3.469h-2.796v8.385c5.737-.9 10.125-5.864 10.125-11.854z"
+                        />
+                    </svg>
+                    <span class="sr-only">Suivez-nous sur Facebook</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bouton retour en haut -->
+    <button
+        id="back-to-top"
+        aria-label="Retour en haut de la page"
+        title="Retour en haut"
+    >
+        ↑
+    </button>
+
+    <!-- Pied de page -->
+    <footer class="bg-[#00AEEF] text-[#1C2526] py-6">
+        <div class="container mx-auto text-center px-4">
+            <p>© 2025 MesDocs. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Initialisation du carrousel des Fonctionnalités avec pagination et vitesse ajustée
+        const swiperFeatures = new Swiper('.swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            speed: 3000, // Vitesse ajustée pour fluidité
+            autoplay: {
+                delay: 3500, // délai plus confortable
+                reverseDirection: true,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+            },
+        });
+
+        // Initialisation du carrousel des Advantages avec pagination et vitesse ajustée
+        const swiperAdvantages = new Swiper('.swiper-container-advantages', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            speed: 3300,
+            autoplay: {
+                delay: 3500,
+                reverseDirection: false,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next-advantages',
+                prevEl: '.swiper-button-prev-advantages',
+            },
+            pagination: {
+                el: '.swiper-pagination-advantages',
+                clickable: true,
+            },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+            },
+        });
+
+        // Script pour le menu hamburger avec animation slide
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        hamburgerBtn.addEventListener('click', () => {
+            const expanded =
+                hamburgerBtn.getAttribute('aria-expanded') === 'true' || false;
+            hamburgerBtn.setAttribute('aria-expanded', !expanded);
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+            } else {
+                mobileMenu.style.maxHeight = '0px';
+                setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+            }
+        });
+
+        // Script pour gérer les liens actifs au scroll
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        function setActiveLink() {
+            let currentSection = '';
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (
+                    window.scrollY >= sectionTop - 60 &&
+                    window.scrollY < sectionTop + sectionHeight - 60
+                ) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach((link) => {
+                link.classList.remove('active');
+                if (
+                    link.getAttribute('href').substring(1) === currentSection
+                ) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', setActiveLink);
+        window.addEventListener('load', setActiveLink);
+
+        // Accordéon FAQ
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach((item) => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            const toggleIcon = item.querySelector('.faq-toggle-icon');
+
+            question.addEventListener('click', () => {
+                const isOpen = item.classList.contains('open');
+                if (isOpen) {
+                    item.classList.remove('open');
+                    question.setAttribute('aria-expanded', 'false');
+                    toggleIcon.textContent = '+';
+                } else {
+                    // Fermer tous les autres
+                    faqItems.forEach((other) => {
+                        other.classList.remove('open');
+                        other
+                            .querySelector('.faq-question')
+                            .setAttribute('aria-expanded', 'false');
+                        other.querySelector('.faq-toggle-icon').textContent = '+';
+                    });
+                    // Ouvrir celui cliqué
+                    item.classList.add('open');
+                    question.setAttribute('aria-expanded', 'true');
+                    toggleIcon.textContent = '−';
+                }
+            });
+
+            // Support clavier (Enter et Space)
+            question.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    question.click();
+                }
+            });
+        });
+
+        // Bouton "Retour en haut"
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        });
+
+        // Animation progressive des cards au scroll via Intersection Observer
+        const animatedCards = document.querySelectorAll(
+            '.swiper-slide > div.bg-white, .advantage-card, .faq-item'
+        );
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add(
+                            'animate__animated',
+                            'animate__fadeInUp'
+                        );
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+        animatedCards.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
+
