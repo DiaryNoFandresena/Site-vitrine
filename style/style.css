@@ -18,13 +18,12 @@ body {
 
 /* === Navigation === */
 .nav-blur {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     transition: background-color 0.3s ease;
 }
 
-/* Fallback pour les navigateurs sans backdrop-filter */
 @supports not (backdrop-filter: blur(8px)) {
     .nav-blur {
         background-color: #ffffff;
@@ -166,21 +165,13 @@ body {
     color: var(--primary-color);
     width: 40px;
     height: 40px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: box-shadow 0.4s ease-in-out;
 }
 
 .contact-icon:hover {
-    transform: translateY(-4px) scale(1.1);
-    box-shadow: 0 6px 12px var(--shadow-dark);
+    animation: pulseIcons 0.5s ease-in-out 3;
+    box-shadow: 0 8px 16px var(--shadow-dark);
     color: var(--primary-color);
-}
-
-.contact-icon.linkedin svg, .contact-icon.facebook svg {
-    fill: var(--primary-color);
-}
-
-.contact-icon:hover.linkedin svg, .contact-icon:hover.facebook svg {
-    fill: var(--primary-color);
 }
 
 .contact-icon.email svg {
@@ -188,31 +179,17 @@ body {
     stroke: var(--primary-color);
 }
 
+.contact-icon.linkedin svg, .contact-icon.facebook svg {
+    fill: var(--primary-color);
+}
+
 .contact-icon:hover.email svg {
     fill: none;
     stroke: var(--primary-color);
 }
 
-.contact-icon::after {
-    content: '';
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    background: transparent;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px var(--shadow-dark);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    z-index: -1;
-}
-
-.contact-icon:hover::after {
-    opacity: 0.8;
-    transform: scale(1.3);
-}
-.email-icon {
-    stroke: var(--primary-color);
-    fill: none;
+.contact-icon:hover.linkedin svg, .contact-icon:hover.facebook svg {
+    fill: var(--primary-color);
 }
 
 /* === Logo animé === */
@@ -229,4 +206,9 @@ body {
 @keyframes slideIn {
     from { transform: translateX(-10px); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulseIcons {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.15) rotate(10deg); }
 }
