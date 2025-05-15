@@ -128,6 +128,22 @@ body {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px var(--shadow-dark-hover);
 }
+.faq-content {
+    transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.3s ease;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    padding-bottom: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+.faq-content.show {
+  max-height: 500px; /* Assez grand pour tous les contenus */
+  opacity: 1;
+  padding-bottom: 1rem; /* Revenir à pb-4 */
+}
+.rotate-45 {
+  transform: rotate(45deg);
+}
 
 /* === Section Héros === */
 #hero {
@@ -167,6 +183,7 @@ body {
     height: 40px;
     background: transparent;
     transition: box-shadow 0.4s ease-in-out;
+    border-radius: 50%; 
 }
 
 .contact-icon.pulsate {
@@ -174,6 +191,7 @@ body {
     box-shadow: 0 8px 16px var(--shadow-dark);
     color: var(--primary-color);
     background: transparent;
+    border-radius: 50%; 
 }
 
 .contact-icon.email svg {
