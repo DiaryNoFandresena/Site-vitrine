@@ -1,0 +1,88 @@
+<script>
+    // Initialisation du carrousel des Fonctionnalités avec défilement fluide
+    const swiperFeatures = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        speed: 3700, // Vitesse de transition pour fluidité
+        autoplay: {
+            delay: 500, // Délai rapide mais fluide
+            reverseDirection: true, // Défilement de droite à gauche
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            640: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 },
+        },
+    });
+
+    // Initialisation du carrousel des Advantages avec défilement fluide
+    const swiperAdvantages = new Swiper('.swiper-container-advantages', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        speed: 3300, // Vitesse de transition pour fluidité
+        autoplay: {
+            delay: 500, // Délai rapide mais fluide
+            reverseDirection: false, // Défilement de droite à gauche
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next-advantages',
+            prevEl: '.swiper-button-prev-advantages',
+        },
+        breakpoints: {
+            640: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 },
+        },
+    });
+
+    // Script pour le menu hamburger
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburgerBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Script pour gérer les liens actifs
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+    
+    function setActiveLink() {
+        let currentSection = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= sectionTop - 50 && window.scrollY < sectionTop + sectionHeight - 50) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === currentSection) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', setActiveLink);
+    window.addEventListener('load', setActiveLink);
+
+    const nav = document.querySelector("nav");
+  
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 20) {
+        nav.classList.add("shadow-md", "bg-white/90", "backdrop-blur");
+      } else {
+        nav.classList.remove("shadow-md", "bg-white/90", "backdrop-blur");
+      }
+    });
+  
+  </script>
