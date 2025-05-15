@@ -631,6 +631,15 @@
             nav.classList.remove("shadow-md", "bg-white/90", "backdrop-blur");
           }
         });
+
+        document.querySelectorAll('.contact-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', () => {
+                icon.classList.add('pulsate');
+                setTimeout(() => {
+                    icon.classList.remove('pulsate');
+                }, 900);
+            });
+        });
       
     </script>
 
