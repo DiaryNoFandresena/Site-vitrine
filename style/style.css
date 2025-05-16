@@ -1,4 +1,4 @@
-/* === Variables CSS === */
+/* ===--- Variables CSS ----------------------=== */
 :root {
     --primary-color: #00AEEF;
     --primary-color-alpha: rgba(0, 174, 239, 0.8);
@@ -10,13 +10,15 @@
     --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e0f2fe 100%);
 }
 
-/* === Styles généraux === */
+/* === ------------Styles généraux ------------=== */
+
 body {
     font-family: 'Inter', sans-serif;
     background: var(--bg-gradient);
 }
 
-/* === Navigation === */
+/* === ------------Navigation ----------------------=== */
+
 .nav-blur {
     background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(8px);
@@ -36,7 +38,8 @@ body {
     animation: slideIn 0.3s ease-in-out;
 }
 
-/* === Carrousel (Swiper) === */
+/* === ----------- Carrousel (Swiper)----------------- === */
+
 .swiper {
     width: 100%;
 }
@@ -88,7 +91,8 @@ body {
     font-size: 20px;
 }
 
-/* === Cartes (Features et Advantages) === */
+/* === ------Cartes (Features et Advantages)-------------------- === */
+
 .feature-card, .advantage-card {
     background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
     border-radius: 1rem;
@@ -119,7 +123,7 @@ body {
     font-size: 0.95rem;
 }
 
-/* === FAQ === */
+/* === -------------------FAQ ---------------------- === */
 .faq-item {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
@@ -145,7 +149,7 @@ body {
   transform: rotate(45deg);
 }
 
-/* === Section Héros === */
+/* === -------------- Section Héros ---------------=== */
 #hero {
     position: relative;
     overflow: hidden;
@@ -172,7 +176,7 @@ body {
     z-index: -1;
 }
 
-/* === Contact === */
+/* === ---------Contact -------------------------=== */
 .contact-icon {
     position: relative;
     display: inline-flex;
@@ -212,12 +216,12 @@ body {
     fill: var(--primary-color);
 }
 
-/* === Logo animé === */
+/* === ------Logo animé-------------------- === */
 .logo-animated {
     animation: pulse 2s infinite ease-in-out;
 }
 
-/* === Animations === */
+/* === ---------Animations --------------------=== */
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
